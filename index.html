@@ -1,0 +1,62 @@
+<!doctype html><html lang="es"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f"><title>Simulador Examen Actualizado</title>
+<link rel="stylesheet" href="styles.css?v=441.5.0">
+<script>
+(function() {
+  const VERSION = "441.5.0";
+  const KEY = "complexivo_asset_version";
+
+  async function limpiarCacheAnterior() {
+    try {
+      if ("serviceWorker" in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map(reg => reg.unregister()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map(key => caches.delete(key)));
+      }
+
+      const anterior = localStorage.getItem(KEY);
+      if (anterior !== VERSION) {
+        localStorage.setItem(KEY, VERSION);
+        const refreshKey = "cache_refresh_done_" + VERSION;
+        if (!sessionStorage.getItem(refreshKey)) {
+          sessionStorage.setItem(refreshKey, "1");
+          const url = new URL(window.location.href);
+          url.searchParams.set("v", VERSION);
+          window.location.replace(url.toString());
+        }
+      }
+    } catch (error) {
+      console.warn("No se pudo limpiar completamente la caché antigua:", error);
+    }
+  }
+
+  limpiarCacheAnterior();
+})();
+</script>
+
+</head><body>
+<header class="top"><div><h1>Simulador Examen</h1><p>Banco actualizado</p></div><button id="resetBtn" class="ghost">Reiniciar</button></header>
+<main>
+<section id="home" class="panel">
+<span class="badge">441 preguntas únicas</span><h2>Simulador actualizado</h2>
+<p>Incluye únicamente las preguntas de comp.pdf y las nuevas preguntas de xivo.pdf.</p>
+<div class="grid">
+<label>Cantidad<select id="count"><option value="10">10</option><option value="20">20</option><option value="50">50</option><option value="100" selected>100</option><option value="441">Todas</option></select></label>
+<label>Materia<select id="subject"><option value="Todas">Todas</option></select></label>
+<label>Modo<select id="mode"><option value="study">Fase de estudio</option><option value="exam">Simulador oficial: respuesta inmediata</option><option value="failed">Falladas</option></select></label>
+</div>
+<button id="startBtn" class="primary">Comenzar</button>
+<div class="stats"><div><strong id="totalDone">0</strong><span>Respondidas</span></div><div><strong id="totalCorrect">0</strong><span>Correctas</span></div><div><strong id="totalFailed">0</strong><span>Falladas</span></div></div>
+</section>
+<section id="quiz" class="panel hidden"><div class="quizbar"><span id="progressText"></span><span id="scoreText"></span></div><div class="progress"><div id="progressFill"></div></div><div class="meta"><span id="qid"></span><span id="qsubject"></span><span id="qpage"></span></div><h2 id="question"></h2><div id="options" class="options"></div><div id="feedback" class="feedback hidden"></div><div class="actions"><button id="quitBtn" class="ghost">Salir</button><button id="repeatBtn" class="secondary hidden">Repetir pregunta</button><button id="nextBtn" class="primary hidden">Siguiente</button></div></section>
+<section id="result" class="panel hidden"><h2>Resultado</h2><div class="resultScore" id="resultScore"></div><div id="resultDetails"></div><button id="reviewBtn" class="secondary">Repasar falladas</button><button id="homeBtn" class="primary">Inicio</button></section>
+</main><script src="questions.js?v=441.5.0"></script><script src="app.js?v=441.5.0"></script><div class="version-badge">Versión 441.5.0</div>
+</body></html>

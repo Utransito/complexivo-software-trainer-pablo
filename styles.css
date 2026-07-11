@@ -1,0 +1,44 @@
+
+:root{font-family:Inter,system-ui,sans-serif;color:#e5e7eb;background:#07111f}*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#07111f,#0f172a 50%,#111827);min-height:100vh}.top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:16px 22px;background:rgba(7,17,31,.94);border-bottom:1px solid #263449}.top h1{margin:0;font-size:1.25rem}.top p{margin:3px 0 0;color:#94a3b8;font-size:.85rem}main{max-width:920px;margin:auto;padding:22px}.panel{background:rgba(15,23,42,.94);border:1px solid #29364b;border-radius:20px;padding:24px;box-shadow:0 18px 50px rgba(0,0,0,.32)}.hidden{display:none!important}.badge{display:inline-block;padding:7px 11px;border-radius:999px;background:#123c32;color:#6ee7b7;font-weight:800}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}label{font-weight:700;color:#cbd5e1;font-size:.88rem}select{width:100%;margin-top:7px;padding:13px;border-radius:12px;border:1px solid #334155;background:#0b1220;color:#fff}button{border:0;border-radius:12px;padding:13px 18px;font-weight:800;cursor:pointer}.primary{background:#22c55e;color:#052e16}.secondary{background:#38bdf8;color:#082f49}.ghost{background:#1e293b;color:#e2e8f0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.stats div{background:#0b1220;border:1px solid #263449;border-radius:14px;padding:15px;text-align:center}.stats strong{display:block;font-size:1.4rem}.stats span{color:#94a3b8;font-size:.8rem}.quizbar,.meta,.actions{display:flex;justify-content:space-between;gap:10px;align-items:center}.progress{height:9px;background:#1e293b;border-radius:99px;margin:12px 0 17px;overflow:hidden}.progress div{height:100%;background:#22c55e}.meta{flex-wrap:wrap;color:#93c5fd;font-size:.8rem}.meta span{background:#101d31;padding:6px 9px;border-radius:99px}#question{white-space:pre-line;line-height:1.48;font-size:1.12rem}.options{display:grid;gap:11px;margin:20px 0}.option{text-align:left;background:#111c2f;color:#eef2ff;border:1px solid #334155;padding:15px;border-radius:14px;line-height:1.4}.option.correct{background:#123c32;border-color:#34d399}.option.wrong{background:#451a1a;border-color:#f87171}.feedback{padding:16px;border-radius:14px;background:#0b1220;border-left:4px solid #38bdf8}.feedback.bad{border-left-color:#f87171}.resultScore{font-size:2.5rem;font-weight:900;color:#4ade80;margin:18px 0}@media(max-width:680px){.top{padding:12px 14px}main{padding:10px 10px 90px}.panel{padding:17px}.grid{grid-template-columns:1fr}#question{font-size:1rem}.option{font-size:.95rem}.actions{position:sticky;bottom:8px;background:#0f172a;padding:10px 0}}
+
+.version-badge{
+  position:fixed;
+  right:10px;
+  bottom:8px;
+  z-index:20;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(15,23,42,.82);
+  border:1px solid #334155;
+  color:#94a3b8;
+  font-size:.68rem;
+  pointer-events:none;
+}
+
+.option.correct{background:linear-gradient(135deg,#14532d,#166534)!important;border:2px solid #4ade80!important;color:#f0fdf4!important}
+.option.correct::after{content:"✓ RESPUESTA CORRECTA";display:block;margin-top:8px;color:#86efac;font-size:.78rem;font-weight:900}
+.option.wrong{background:linear-gradient(135deg,#4c0519,#7f1d1d)!important;border:2px solid #fb7185!important;color:#fff1f2!important}
+.option.wrong::after{content:"✕ TU RESPUESTA";display:block;margin-top:8px;color:#fda4af;font-size:.78rem;font-weight:900}
+.option.selected{background:#172554!important;border:2px solid #60a5fa!important;color:#dbeafe!important}
+#repeatBtn{background:#f59e0b;color:#451a03}
+@media(max-width:680px){.actions{display:grid!important;grid-template-columns:1fr 1fr;gap:8px!important}.actions button{width:100%}#repeatBtn{grid-column:1/-1}}
+
+/* Guía permanente en fase de estudio */
+.option.study-correct{
+  background:linear-gradient(135deg,#1e3a8a,#1d4ed8)!important;
+  border:3px solid #60a5fa!important;
+  color:#eff6ff!important;
+  box-shadow:0 0 0 3px rgba(96,165,250,.18),0 8px 24px rgba(29,78,216,.25);
+}
+.option.study-correct::before{
+  content:"⭐ RESPUESTA CORRECTA PARA ESTUDIAR";
+  display:block;
+  margin-bottom:8px;
+  color:#bfdbfe;
+  font-size:.78rem;
+  font-weight:950;
+  letter-spacing:.02em;
+}
+.option.study-correct:hover{
+  filter:brightness(1.08);
+}
